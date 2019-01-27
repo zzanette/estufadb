@@ -1,10 +1,9 @@
 package com.projeto.estufadb.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -20,6 +19,8 @@ public class EspeciePlanta implements Serializable {
     private Integer umidadeMinima;
     private Integer umidadeMaxima;
 
+    @OneToMany(mappedBy = "especiePlanta", targetEntity = Planta.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Planta> plantas = new ArrayList<>();
 
     public EspeciePlanta() {}
 
