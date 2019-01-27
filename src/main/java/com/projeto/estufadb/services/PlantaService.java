@@ -2,6 +2,7 @@ package com.projeto.estufadb.services;
 
 import com.projeto.estufadb.domain.Planta;
 import com.projeto.estufadb.repositories.PlantaRepository;
+import com.projeto.estufadb.services.exceptions.ObjectNotFoundException;
 import jdk.nashorn.internal.runtime.options.Option;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class PlantaService {
     public Planta buscar(Long id) {
         Optional<Planta> planta = plantaRepository.findById(id);
 
-        return planta.orElse(null);
+        return planta.orElseThrow(() -> new ObjectNotFoundException("Planta com o id: " + id + " não encontrada."));
     }
 
 }
