@@ -23,6 +23,13 @@ public class EspeciePlanta implements Serializable {
 
     public EspeciePlanta() {}
 
+    public EspeciePlanta(Long id, String nome, Integer umidadeMinima, Integer umidadeMaxima) {
+        this.id = id;
+        this.nome = nome;
+        this.umidadeMinima = umidadeMinima;
+        this.umidadeMaxima = umidadeMaxima;
+    }
+
     public Long getId() {
         return id;
     }
