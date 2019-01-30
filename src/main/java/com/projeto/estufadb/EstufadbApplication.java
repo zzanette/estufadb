@@ -63,8 +63,9 @@ public class EstufadbApplication implements CommandLineRunner {
                 Planta planta = plantaRepository.save(new Planta(null, codigoSensor+i, especiePlanta));
 
                 Random umidadeAtual = new Random();
+                Random umidadeAtualDec = new Random();
                 HistoricoUmidadePlanta historico = new HistoricoUmidadePlanta(null,
-                        (float) (umidadeAtual.nextInt(95) + 5),
+                         ((float) umidadeAtual.nextInt(95) + 5) + ((float) umidadeAtualDec.nextInt(99) / 100) ,
                         Calendar.getInstance(),
                         planta
                 );
