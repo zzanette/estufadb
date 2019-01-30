@@ -3,12 +3,10 @@ package com.projeto.estufadb.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Objects;
 
 @Entity
 public class HistoricoUmidadePlanta implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
     @Id

@@ -6,7 +6,6 @@ import java.util.Objects;
 
 @Entity
 public class Planta implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
     @Id

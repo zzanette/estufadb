@@ -7,9 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-
 public class EspeciePlanta implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -19,7 +17,7 @@ public class EspeciePlanta implements Serializable {
     private Integer umidadeMinima;
     private Integer umidadeMaxima;
 
-    @OneToMany(mappedBy = "especiePlanta", targetEntity = Planta.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "especiePlanta")
     private List<Planta> plantas = new ArrayList<>();
 
     public EspeciePlanta() {}
