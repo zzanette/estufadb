@@ -5,14 +5,17 @@ import com.projeto.estufadb.services.HistoricoUmidadePlantaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/historico-umidade-planta")
-public class HistoricoUmidadePlantaResource {
+public class HistoricoUmidadePlantaResource extends BaseResource {
 
     @Autowired
     private HistoricoUmidadePlantaService historicoUmidadePlantaService;
@@ -27,10 +30,7 @@ public class HistoricoUmidadePlantaResource {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> create(@RequestBody HistoricoUmidadePlanta newHistoricoUmidadePlanta) {
          HistoricoUmidadePlanta historicoUmidadePlanta = historicoUmidadePlantaService.insert(newHistoricoUmidadePlanta);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}").buildAndExpand(historicoUmidadePlanta.getId()).toUri();
-
-        return ResponseEntity.created(uri).build();
+        return ResponseEntity.created( getUriExpanded("/{id}", historicoUmidadePlanta.getId())).build();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
@@ -38,6 +38,12 @@ public class HistoricoUmidadePlantaResource {
         updatedHistoricoUmidadePlanta.setId(id);
         historicoUmidadePlantaService.update(updatedHistoricoUmidadePlanta);
 
+        return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<HistoricoUmidadePlanta> deleteById(@PathVariable Long id) {
+        historicoUmidadePlantaService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 }

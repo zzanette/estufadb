@@ -24,8 +24,9 @@ public class HistoricoUmidadePlantaService {
 
     public HistoricoUmidadePlanta findById(Long id) {
         Optional<HistoricoUmidadePlanta> historicoUmidadePlanta = historicoUmidadePlantaRepository.findById(id);
-
-        return historicoUmidadePlanta.orElseThrow(() -> new ObjectNotFoundException("Não foi possivel encontrar o historico de umidade com ID " + id));
+        return historicoUmidadePlanta.orElseThrow(() ->
+                new ObjectNotFoundException("Não foi possivel encontrar o historico de umidade com ID " + id)
+        );
     }
 
     public HistoricoUmidadePlanta insert(HistoricoUmidadePlanta newHistoricoUmidadePlanta) {
@@ -36,5 +37,10 @@ public class HistoricoUmidadePlantaService {
     public HistoricoUmidadePlanta update(HistoricoUmidadePlanta updatedHistoricoUmidadePlanta) {
         findById(updatedHistoricoUmidadePlanta.getId());
         return historicoUmidadePlantaRepository.save(updatedHistoricoUmidadePlanta);
+    }
+
+    public void deleteById(Long id) {
+        findById(id);
+        historicoUmidadePlantaRepository.deleteById(id);
     }
 }

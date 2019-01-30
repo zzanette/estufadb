@@ -17,8 +17,21 @@ public class PlantaService {
 
     public Planta findById(Long id) {
         Optional<Planta> planta = plantaRepository.findById(id);
-
-        return planta.orElseThrow(() -> new ObjectNotFoundException("Planta com o id: " + id + " não encontrada."));
+        return planta.orElseThrow(() -> new ObjectNotFoundException("Planta com o id " + id + " não encontrada."));
     }
 
+    public Planta insert(Planta newPlanta) {
+        newPlanta.setId(null);
+        return plantaRepository.save(newPlanta);
+    }
+
+    public Planta update(Planta updatePlanta) {
+        findById(updatePlanta.getId());
+        return plantaRepository.save(updatePlanta);
+    }
+
+    public void deleteById(Long id) {
+        findById(id);
+        plantaRepository.deleteById(id);
+    }
 }
