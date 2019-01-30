@@ -17,8 +17,8 @@ public class EspeciePlantaResource {
     private EspeciePlantaService especiePlantaService;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> find(@PathVariable Long id) {
-        EspeciePlanta especiePlanta = especiePlantaService.buscar(id);
+    public ResponseEntity<EspeciePlanta> find(@PathVariable Long id) {
+        EspeciePlanta especiePlanta = especiePlantaService.findById(id);
 
         return ResponseEntity.ok().body(especiePlanta);
     }

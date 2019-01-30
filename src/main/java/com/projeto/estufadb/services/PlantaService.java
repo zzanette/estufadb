@@ -15,7 +15,7 @@ public class PlantaService {
     @Autowired
     private PlantaRepository plantaRepository;
 
-    public Planta buscar(Long id) {
+    public Planta findById(Long id) {
         Optional<Planta> planta = plantaRepository.findById(id);
 
         return planta.orElseThrow(() -> new ObjectNotFoundException("Planta com o id: " + id + " não encontrada."));

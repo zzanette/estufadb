@@ -18,8 +18,8 @@ public class PlantaResource {
     private PlantaService plantaService;
 
     @RequestMapping(value = {"/{id}"}, method = RequestMethod.GET)
-    public ResponseEntity<?> find(@PathVariable Long id) {
-        Planta planta = plantaService.buscar(id);
+    public ResponseEntity<Planta> find(@PathVariable Long id) {
+        Planta planta = plantaService.findById(id);
 
         return ResponseEntity.ok().body(planta);
     }

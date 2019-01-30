@@ -14,7 +14,7 @@ public class EspeciePlantaService {
     @Autowired
     private EspeciePlantaRepository repository;
 
-    public EspeciePlanta buscar(Long id) {
+    public EspeciePlanta findById(Long id) {
         Optional<EspeciePlanta> especiePlanta = repository.findById(id);
 
         return especiePlanta.orElseThrow(() -> new ObjectNotFoundException("Especie  de planta com id: " + id + "não encontrada."));
