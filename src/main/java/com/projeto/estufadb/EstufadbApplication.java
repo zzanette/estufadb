@@ -64,7 +64,7 @@ public class EstufadbApplication implements CommandLineRunner {
 
                 Random umidadeAtual = new Random();
                 HistoricoUmidadePlanta historico = new HistoricoUmidadePlanta(null,
-                        umidadeAtual.nextInt(95) + 5,
+                        (float) (umidadeAtual.nextInt(95) + 5),
                         Calendar.getInstance(),
                         planta
                 );
@@ -74,11 +74,11 @@ public class EstufadbApplication implements CommandLineRunner {
     }
 
     private List<EspeciePlanta> initDataBaseEspeciePlanta() {
-        EspeciePlanta morango = new EspeciePlanta( null, "Morango", 60, 80);
-        EspeciePlanta cactus = new EspeciePlanta(  null, "Cactus", 20, 50);
-        EspeciePlanta cogumelo = new EspeciePlanta(null, "Cogumelo", 80, 90);
-        EspeciePlanta violeta = new EspeciePlanta(null, "Violeta", 40, 80);
-        EspeciePlanta lavanda = new EspeciePlanta(null, "Lavanda", 20, 30);
+        EspeciePlanta morango = new EspeciePlanta( null, "Morango", new Float("60.00"), new Float("80.00"));
+        EspeciePlanta cactus = new EspeciePlanta(  null, "Cactus",   new Float("20.00"), new Float("50.00"));
+        EspeciePlanta cogumelo = new EspeciePlanta(null, "Cogumelo", new Float("80.00"), new Float("90.00"));
+        EspeciePlanta violeta = new EspeciePlanta(null, "Violeta",   new Float("40.00"), new Float("80.00"));
+        EspeciePlanta lavanda = new EspeciePlanta(null, "Lavanda",   new Float("20.00"), new Float("30.00"));
 
         List<EspeciePlanta> lista = Arrays.asList(morango, cactus, cogumelo, violeta, lavanda);
         especiePlantaRepository.saveAll(lista);

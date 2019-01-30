@@ -13,7 +13,7 @@ public class HistoricoUmidadePlanta implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Integer umidade;
+    private Float umidade;
 
     private Calendar data;
 
@@ -23,7 +23,7 @@ public class HistoricoUmidadePlanta implements Serializable {
 
     public HistoricoUmidadePlanta() {}
 
-    public HistoricoUmidadePlanta(Long id, Integer umidade, Calendar data, Planta planta) {
+    public HistoricoUmidadePlanta(Long id, Float umidade, Calendar data, Planta planta) {
         this.id = id;
         this.umidade = umidade;
         this.data = data;
@@ -39,11 +39,11 @@ public class HistoricoUmidadePlanta implements Serializable {
         this.id = id;
     }
 
-    public Integer getUmidade() {
+    public Float getUmidade() {
         return umidade;
     }
 
-    public void setUmidade(Integer umidade) {
+    public void setUmidade(Float umidade) {
         this.umidade = umidade;
     }
 

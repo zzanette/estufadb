@@ -9,8 +9,8 @@ public class EspeciePlantaDTO implements Serializable {
 
     private Long id;
     private String nome;
-    private Integer umidadeMinima;
-    private Integer umidadeMaxima;
+    private Float umidadeMinima;
+    private Float umidadeMaxima;
 
     public EspeciePlantaDTO() {}
 
@@ -37,19 +37,19 @@ public class EspeciePlantaDTO implements Serializable {
         this.nome = nome;
     }
 
-    public Integer getUmidadeMinima() {
+    public Float getUmidadeMinima() {
         return umidadeMinima;
     }
 
-    public void setUmidadeMinima(Integer umidadeMinima) {
+    public void setUmidadeMinima(Float umidadeMinima) {
         this.umidadeMinima = umidadeMinima;
     }
 
-    public Integer getUmidadeMaxima() {
+    public Float getUmidadeMaxima() {
         return umidadeMaxima;
     }
 
-    public void setUmidadeMaxima(Integer umidadeMaxima) {
+    public void setUmidadeMaxima(Float umidadeMaxima) {
         this.umidadeMaxima = umidadeMaxima;
     }
 }

@@ -14,15 +14,15 @@ public class EspeciePlanta implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    private Integer umidadeMinima;
-    private Integer umidadeMaxima;
+    private Float umidadeMinima;
+    private Float umidadeMaxima;
 
     @OneToMany(mappedBy = "especiePlanta")
     private List<Planta> plantas = new ArrayList<>();
 
     public EspeciePlanta() {}
 
-    public EspeciePlanta(Long id, String nome, Integer umidadeMinima, Integer umidadeMaxima) {
+    public EspeciePlanta(Long id, String nome, Float umidadeMinima, Float umidadeMaxima) {
         this.id = id;
         this.nome = nome;
         this.umidadeMinima = umidadeMinima;
@@ -45,19 +45,19 @@ public class EspeciePlanta implements Serializable {
         this.nome = nome;
     }
 
-    public Integer getUmidadeMinima() {
+    public Float getUmidadeMinima() {
         return umidadeMinima;
     }
 
-    public void setUmidadeMinima(Integer umidadeMinima) {
+    public void setUmidadeMinima(Float umidadeMinima) {
         this.umidadeMinima = umidadeMinima;
     }
 
-    public Integer getUmidadeMaxima() {
+    public Float getUmidadeMaxima() {
         return umidadeMaxima;
     }
 
-    public void setUmidadeMaxima(Integer umidadeMaxima) {
+    public void setUmidadeMaxima(Float umidadeMaxima) {
         this.umidadeMaxima = umidadeMaxima;
     }
 

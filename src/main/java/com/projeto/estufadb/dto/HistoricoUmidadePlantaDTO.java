@@ -9,7 +9,7 @@ public class HistoricoUmidadePlantaDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
-    private Integer umidade;
+    private Float umidade;
     private Calendar data;
 
     public HistoricoUmidadePlantaDTO() {}
@@ -28,11 +28,11 @@ public class HistoricoUmidadePlantaDTO implements Serializable {
         this.id = id;
     }
 
-    public Integer getUmidade() {
+    public Float getUmidade() {
         return umidade;
     }
 
-    public void setUmidade(Integer umidade) {
+    public void setUmidade(Float umidade) {
         this.umidade = umidade;
     }
 
