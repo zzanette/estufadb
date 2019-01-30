@@ -6,6 +6,8 @@ import com.projeto.estufadb.repositories.HistoricoUmidadePlantaRepository;
 import com.projeto.estufadb.repositories.PlantaRepository;
 import com.projeto.estufadb.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -42,5 +44,10 @@ public class HistoricoUmidadePlantaService {
     public void deleteById(Long id) {
         findById(id);
         historicoUmidadePlantaRepository.deleteById(id);
+    }
+
+    public Page<HistoricoUmidadePlanta> findPage(Integer page, Integer linesPerPage, String direction, String orderBy) {
+        PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.fromString(direction), orderBy);
+        return historicoUmidadePlantaRepository.findAll(pageRequest);
     }
 }
