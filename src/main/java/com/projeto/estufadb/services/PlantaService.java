@@ -20,6 +20,11 @@ public class PlantaService {
         return planta.orElseThrow(() -> new ObjectNotFoundException("Planta com o id " + id + " não encontrada."));
     }
 
+    public Planta findByCodigoSensor(String codigoSensor) {
+        Optional<Planta> planta = plantaRepository.findByCodigoSensor(codigoSensor);
+        return planta.orElseThrow(() -> new ObjectNotFoundException("Planta com o código de sensor " + codigoSensor + "não encontrada."));
+    }
+
     public Planta insert(Planta newPlanta) {
         newPlanta.setId(null);
         return plantaRepository.save(newPlanta);

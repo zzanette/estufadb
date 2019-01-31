@@ -2,12 +2,15 @@ package com.projeto.estufadb.dto;
 
 import com.projeto.estufadb.domain.Planta;
 
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 public class PlantaDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
+
+    @NotEmpty(message = "Codigo do sensor da planta não pode ser vazio.")
     private String codigoSensor;
 
     public PlantaDTO () {}

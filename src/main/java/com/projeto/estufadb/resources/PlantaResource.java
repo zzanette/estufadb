@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.websocket.server.PathParam;
+
 @RestController
 @RequestMapping(value = "/plantas")
 public class PlantaResource extends BaseResource {
@@ -21,6 +23,14 @@ public class PlantaResource extends BaseResource {
     @RequestMapping(value = {"/{id}"}, method = RequestMethod.GET)
     public ResponseEntity<Planta> find(@PathVariable Long id) {
         Planta planta = plantaService.findById(id);
+        return ResponseEntity.ok().body(planta);
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<Planta> findByCondigoSensor(
+            @PathParam(value = "codigoSensor") String codigoSensor
+    ) {
+        Planta planta = plantaService.findByCodigoSensor(codigoSensor);
         return ResponseEntity.ok().body(planta);
     }
 

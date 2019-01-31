@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/historico-umidade-planta")
 public class HistoricoUmidadePlantaResource extends BaseResource {
@@ -22,20 +24,20 @@ public class HistoricoUmidadePlantaResource extends BaseResource {
     private HistoricoUmidadePlantaService historicoUmidadePlantaService;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<HistoricoUmidadePlanta> getById(@PathVariable Long id) {
+    public ResponseEntity<HistoricoUmidadePlantaDTO> getById(@PathVariable Long id) {
         HistoricoUmidadePlanta historicoUmidadePlanta = historicoUmidadePlantaService.findById(id);
 
-        return ResponseEntity.ok().body(historicoUmidadePlanta);
+        return ResponseEntity.ok().body(new HistoricoUmidadePlantaDTO(historicoUmidadePlanta));
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Void> create(@RequestBody HistoricoUmidadePlanta newHistoricoUmidadePlanta) {
+    public ResponseEntity<Void> create(@Valid @RequestBody HistoricoUmidadePlantaDTO newHistoricoUmidadePlanta) {
          HistoricoUmidadePlanta historicoUmidadePlanta = historicoUmidadePlantaService.insert(newHistoricoUmidadePlanta);
         return ResponseEntity.created( getUriExpanded("/{id}", historicoUmidadePlanta.getId())).build();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Void> update(@RequestBody HistoricoUmidadePlanta updatedHistoricoUmidadePlanta, @PathVariable Long id) {
+    public ResponseEntity<Void> update(@RequestBody HistoricoUmidadePlantaDTO updatedHistoricoUmidadePlanta, @PathVariable Long id) {
         updatedHistoricoUmidadePlanta.setId(id);
         historicoUmidadePlantaService.update(updatedHistoricoUmidadePlanta);
 
@@ -43,13 +45,13 @@ public class HistoricoUmidadePlantaResource extends BaseResource {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<HistoricoUmidadePlanta> deleteById(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
         historicoUmidadePlantaService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
     @RequestMapping(value = "/page", method = RequestMethod.GET)
-    public ResponseEntity<?> page(
+    public ResponseEntity<Page<HistoricoUmidadePlantaDTO>> page(
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
             @RequestParam(value = "orderBy", defaultValue = "data") String orderBy,

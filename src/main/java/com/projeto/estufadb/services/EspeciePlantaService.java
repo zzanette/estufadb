@@ -1,6 +1,7 @@
 package com.projeto.estufadb.services;
 
 import com.projeto.estufadb.domain.EspeciePlanta;
+import com.projeto.estufadb.dto.EspeciePlantaDTO;
 import com.projeto.estufadb.repositories.EspeciePlantaRepository;
 import com.projeto.estufadb.services.exceptions.DataIntegrityException;
 import com.projeto.estufadb.services.exceptions.ObjectNotFoundException;
@@ -38,5 +39,9 @@ public class EspeciePlantaService {
     public EspeciePlanta update(EspeciePlanta especiePlanta) {
         findById(especiePlanta.getId());
         return especiePlantaRepository.save(especiePlanta);
+    }
+
+    public EspeciePlanta fromDTO(EspeciePlantaDTO especiePlantaDTO) {
+        return new EspeciePlanta(especiePlantaDTO.getId(), especiePlantaDTO.getNome(), especiePlantaDTO.getUmidadeMinima(), especiePlantaDTO.getUmidadeMaxima());
     }
 }
