@@ -13,11 +13,20 @@ public class PlantaDTO implements Serializable {
     @NotEmpty(message = "Codigo do sensor da planta não pode ser vazio.")
     private String codigoSensor;
 
+    private Float umidadeMinimaEspecie;
+
+    private Float umidadeMaximaEspecie;
+
+    private Float umidadeAtualPlanta;
+
     public PlantaDTO () {}
 
     public PlantaDTO(Planta planta) {
         this.id = planta.getId();
         this.codigoSensor = planta.getCodigoSensor();
+        this.umidadeMinimaEspecie = planta.getEspeciePlanta().getUmidadeMinima();
+        this.umidadeMaximaEspecie = planta.getEspeciePlanta().getUmidadeMaxima();
+        this.umidadeAtualPlanta = planta.getUltimaUmidadeRegistrada();
     }
 
     public Long getId() {

@@ -2,6 +2,7 @@ package com.projeto.estufadb.resources;
 
 
 import com.projeto.estufadb.domain.Planta;
+import com.projeto.estufadb.dto.PlantaDTO;
 import com.projeto.estufadb.services.PlantaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.websocket.server.PathParam;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/plantas")
@@ -51,5 +54,13 @@ public class PlantaResource extends BaseResource {
     public ResponseEntity<Void> deleteById(@PathVariable Long id) {
         plantaService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(value = "/especie/{id}", method = RequestMethod.GET)
+    public ResponseEntity<List<PlantaDTO>> getByEspecieId(@PathVariable Long id) {
+        List<Planta> plantas = plantaService.getByEspecieId(id);
+        List<PlantaDTO> plantaDTOS = plantas.stream().map(planta -> new PlantaDTO(planta)).collect(Collectors.toList());
+
+        return ResponseEntity.ok().body(plantaDTOS);
     }
 }

@@ -1,9 +1,11 @@
 package com.projeto.estufadb.services;
 
+import com.projeto.estufadb.domain.EspeciePlanta;
 import com.projeto.estufadb.domain.Planta;
 import com.projeto.estufadb.repositories.PlantaRepository;
 import com.projeto.estufadb.services.exceptions.ObjectNotFoundException;
-import jdk.nashorn.internal.runtime.options.Option;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,8 @@ public class PlantaService {
 
     @Autowired
     private PlantaRepository plantaRepository;
+
+    @Autowired EspeciePlantaService especiePlantaService;
 
     public Planta findById(Long id) {
         Optional<Planta> planta = plantaRepository.findById(id);
@@ -38,5 +42,10 @@ public class PlantaService {
     public void deleteById(Long id) {
         findById(id);
         plantaRepository.deleteById(id);
+    }
+
+    public List<Planta> getByEspecieId(Long id) {
+        EspeciePlanta especiePlanta = especiePlantaService.findById(id);
+        return plantaRepository.findByEspeciePlanta(especiePlanta);
     }
 }

@@ -2,6 +2,10 @@ package com.projeto.estufadb.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -18,6 +22,9 @@ public class Planta implements Serializable {
     @ManyToOne
     @JoinColumn(name = "ESPECIE_PLANTA_ID")
     private EspeciePlanta especiePlanta;
+
+    @OneToMany(mappedBy = "planta")
+    private List<HistoricoUmidadePlanta> historicoUmidadePlanta = new ArrayList<>();
 
     public Planta() {}
 
@@ -51,6 +58,21 @@ public class Planta implements Serializable {
         this.especiePlanta = especiePlanta;
     }
 
+    public List<HistoricoUmidadePlanta> getHistoricoUmidadePlanta() {
+        return historicoUmidadePlanta;
+    }
+
+    public void setHistoricoUmidadePlanta(List<HistoricoUmidadePlanta> historicoUmidadePlanta) {
+        this.historicoUmidadePlanta = historicoUmidadePlanta;
+    }
+
+    public Float getUltimaUmidadeRegistrada() {
+        Collections.sort(getHistoricoUmidadePlanta(),
+                Collections.reverseOrder(Comparator.comparingDouble(HistoricoUmidadePlanta::getUmidade)));
+
+        return getHistoricoUmidadePlanta().get(0).getUmidade();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -63,4 +85,6 @@ public class Planta implements Serializable {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+
 }
