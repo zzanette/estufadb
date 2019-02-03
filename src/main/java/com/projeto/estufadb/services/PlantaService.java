@@ -7,6 +7,9 @@ import com.projeto.estufadb.services.exceptions.ObjectNotFoundException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -47,5 +50,10 @@ public class PlantaService {
     public List<Planta> getByEspecieId(Long id) {
         EspeciePlanta especiePlanta = especiePlantaService.findById(id);
         return plantaRepository.findByEspeciePlanta(especiePlanta);
+    }
+
+    public Page<Planta> findPage(Integer page, Integer linesPerPage, String direction, String orderBy) {
+        PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.fromString(direction), orderBy);
+        return plantaRepository.findAll(pageRequest);
     }
 }

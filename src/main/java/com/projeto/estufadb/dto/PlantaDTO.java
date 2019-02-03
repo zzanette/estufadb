@@ -44,4 +44,28 @@ public class PlantaDTO implements Serializable {
     public void setCodigoSensor(String codigoSensor) {
         this.codigoSensor = codigoSensor;
     }
+
+    public Float getUmidadeMinimaEspecie() {
+        return umidadeMinimaEspecie;
+    }
+
+    public void setUmidadeMinimaEspecie(Float umidadeMinimaEspecie) {
+        this.umidadeMinimaEspecie = umidadeMinimaEspecie;
+    }
+
+    public Float getUmidadeMaximaEspecie() {
+        return umidadeMaximaEspecie;
+    }
+
+    public void setUmidadeMaximaEspecie(Float umidadeMaximaEspecie) {
+        this.umidadeMaximaEspecie = umidadeMaximaEspecie;
+    }
+
+    public Float getUmidadeAtualPlanta() {
+        return umidadeAtualPlanta;
+    }
+
+    public void setUmidadeAtualPlanta(Float umidadeAtualPlanta) {
+        this.umidadeAtualPlanta = umidadeAtualPlanta;
+    }
 }

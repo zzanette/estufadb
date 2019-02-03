@@ -5,11 +5,13 @@ import com.projeto.estufadb.domain.Planta;
 import com.projeto.estufadb.dto.PlantaDTO;
 import com.projeto.estufadb.services.PlantaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.websocket.server.PathParam;
@@ -62,5 +64,19 @@ public class PlantaResource extends BaseResource {
         List<PlantaDTO> plantaDTOS = plantas.stream().map(planta -> new PlantaDTO(planta)).collect(Collectors.toList());
 
         return ResponseEntity.ok().body(plantaDTOS);
+    }
+
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
+    public ResponseEntity<List<PlantaDTO>> page(
+            @RequestParam(value = "page", defaultValue = "0") Integer page,
+            @RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
+            @RequestParam(value = "orderBy", defaultValue = "id") String orderBy,
+            @RequestParam(value = "direction", defaultValue = "desc") String direction
+    ) {
+
+        Page<Planta> plantas = plantaService.findPage(page, linesPerPage, direction, orderBy);
+        Page<PlantaDTO> listaDTO = plantas.map(planta -> new PlantaDTO(planta));
+
+        return ResponseEntity.ok().body(listaDTO.getContent());
     }
 }
