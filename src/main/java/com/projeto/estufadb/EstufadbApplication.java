@@ -58,6 +58,12 @@ public class EstufadbApplication implements CommandLineRunner {
                 case "Lavanda":
                     codigoSensor = "LAV";
                     break;
+                case "Rosa":
+                    codigoSensor = "ROS";
+                    break;
+                case "Orquidea":
+                    codigoSensor = "ORQ";
+                    break;
             }
             for (int i = 1; i < 4; i++) {
                 Planta planta = plantaRepository.save(new Planta(null, codigoSensor+i, especiePlanta));
@@ -80,8 +86,10 @@ public class EstufadbApplication implements CommandLineRunner {
         EspeciePlanta cogumelo = new EspeciePlanta(null, "Cogumelo", new Float("80.00"), new Float("90.00"));
         EspeciePlanta violeta = new EspeciePlanta(null, "Violeta",   new Float("40.00"), new Float("80.00"));
         EspeciePlanta lavanda = new EspeciePlanta(null, "Lavanda",   new Float("20.00"), new Float("30.00"));
+        EspeciePlanta orquidea = new EspeciePlanta(null, "Orquidea",  new Float("30.00"), new Float("50.00"));
+        EspeciePlanta rosa = new EspeciePlanta(null, "Rosa",   new Float("50.00"), new Float("70.00"));
 
-        List<EspeciePlanta> lista = Arrays.asList(morango, cactus, cogumelo, violeta, lavanda);
+        List<EspeciePlanta> lista = Arrays.asList(morango, cactus, cogumelo, violeta, lavanda, orquidea, rosa);
         especiePlantaRepository.saveAll(lista);
 
         return lista;
