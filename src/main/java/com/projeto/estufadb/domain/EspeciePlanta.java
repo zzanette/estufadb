@@ -16,6 +16,7 @@ public class EspeciePlanta implements Serializable {
     private String nome;
     private Float umidadeMinima;
     private Float umidadeMaxima;
+    private String imgUrl;
 
     @OneToMany(mappedBy = "especiePlanta")
     private List<Planta> plantas = new ArrayList<>();
@@ -27,6 +28,15 @@ public class EspeciePlanta implements Serializable {
         this.nome = nome;
         this.umidadeMinima = umidadeMinima;
         this.umidadeMaxima = umidadeMaxima;
+        this.imgUrl = "https://www.zigg.com.br/static/img/no-imagem.png";
+    }
+
+    public EspeciePlanta(Long id, String nome, Float umidadeMinima, Float umidadeMaxima, String imgUrl) {
+        this.id = id;
+        this.nome = nome;
+        this.umidadeMinima = umidadeMinima;
+        this.umidadeMaxima = umidadeMaxima;
+        this.imgUrl = imgUrl;
     }
 
     public Long getId() {
@@ -59,6 +69,14 @@ public class EspeciePlanta implements Serializable {
 
     public void setUmidadeMaxima(Float umidadeMaxima) {
         this.umidadeMaxima = umidadeMaxima;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     @Override

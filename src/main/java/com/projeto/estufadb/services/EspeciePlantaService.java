@@ -7,6 +7,9 @@ import com.projeto.estufadb.services.exceptions.DataIntegrityException;
 import com.projeto.estufadb.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -44,4 +47,11 @@ public class EspeciePlantaService {
     public EspeciePlanta fromDTO(EspeciePlantaDTO especiePlantaDTO) {
         return new EspeciePlanta(especiePlantaDTO.getId(), especiePlantaDTO.getNome(), especiePlantaDTO.getUmidadeMinima(), especiePlantaDTO.getUmidadeMaxima());
     }
+
+    public Page<EspeciePlanta> findPage(Integer page, Integer linesPerPage, String direction, String orderBy) {
+        PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.fromString(direction), orderBy);
+        return especiePlantaRepository.findAll(pageRequest);
+    }
+
+
 }

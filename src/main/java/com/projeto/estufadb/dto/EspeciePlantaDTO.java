@@ -28,13 +28,16 @@ public class EspeciePlantaDTO implements Serializable {
     @DecimalMax(value = "100.00", message = "Maior procentagem para umidade minima deve ser 100.")
     private Float umidadeMaxima;
 
+    private String imgUrl;
+
     public EspeciePlantaDTO() {}
 
     public EspeciePlantaDTO(EspeciePlanta especiePlanta) {
         this.id = especiePlanta.getId();
         this.nome = especiePlanta.getNome();
         this.umidadeMinima = especiePlanta.getUmidadeMinima();
-        this.umidadeMinima = especiePlanta.getUmidadeMaxima();
+        this.umidadeMaxima = especiePlanta.getUmidadeMaxima();
+        this.imgUrl = especiePlanta.getImgUrl();
     }
 
     public Long getId() {
@@ -67,5 +70,13 @@ public class EspeciePlantaDTO implements Serializable {
 
     public void setUmidadeMaxima(Float umidadeMaxima) {
         this.umidadeMaxima = umidadeMaxima;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }
