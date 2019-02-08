@@ -1,4 +1,4 @@
-package com.projeto.estufadb;
+package com.projeto.estufadb.repositoriesTests;
 
 import com.projeto.estufadb.domain.EspeciePlanta;
 import com.projeto.estufadb.domain.Planta;
@@ -54,6 +54,4 @@ public class PlantaRepositoryIntegrationTest {
 
         assertThat(findPlantas.size()).isEqualTo(2);
     }
-
-
 }
