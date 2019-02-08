@@ -31,10 +31,10 @@ public class EspeciePlantaTest {
     public EspeciePlanta generateCompleteEspeciePlanta() {
         EspeciePlanta especiePlanta = new EspeciePlanta();
         especiePlanta.setId(new Long("1"));
-        especiePlanta.setImgUrl("img");
         especiePlanta.setNome("Teste de nome");
         especiePlanta.setUmidadeMinima(new Float(45.66));
         especiePlanta.setUmidadeMaxima(new Float(55.66));
+        especiePlanta.setImgUrl("http://defaultimage.com/avatar.png");
 
         return especiePlanta;
     }
@@ -123,5 +123,12 @@ public class EspeciePlantaTest {
         especiePlanta.setImgUrl("myFile.pdf");
 
         assertEquals(getValidationEspeciePlanta(especiePlanta).isEmpty(), false);
+    }
+
+    @Test
+    public void whenEspeciePlantaHasCorrectData_thenValidationPass() {
+        EspeciePlanta especiePlanta = generateCompleteEspeciePlanta();
+
+        assertEquals(getValidationEspeciePlanta(especiePlanta).isEmpty(), true);
     }
 }
