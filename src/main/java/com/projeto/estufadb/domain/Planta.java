@@ -9,14 +9,16 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Table(name = "PLANTA")
 public class Planta implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column(unique = true)
+    @Column(name = "CODIGO_SENSOR",unique = true)
     private String codigoSensor;
 
     @ManyToOne

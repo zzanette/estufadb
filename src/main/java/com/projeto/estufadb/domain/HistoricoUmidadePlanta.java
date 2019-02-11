@@ -6,15 +6,19 @@ import java.util.Calendar;
 import java.util.Objects;
 
 @Entity
+@Table(name = "HISTORICO_UMIDADE_PLANTA")
 public class HistoricoUmidadePlanta implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private Long id;
 
+    @Column(name = "UMIDADE")
     private Float umidade;
 
+    @Column(name = "DATA")
     private Calendar data;
 
     @ManyToOne

@@ -1,11 +1,13 @@
 package com.projeto.estufadb.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.io.Serializable;
@@ -14,29 +16,35 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Table(name = "ESPECIE_PLANTA")
 public class EspeciePlanta implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private Long id;
 
     @NotNull(message = "Nome da espécie não pdoe ser nulo.")
     @NotEmpty(message = "Nome da espécie não pode ser vazio.")
     @NotBlank(message = "Nome da espécie não pode conter.")
+    @Column(name = "NOME")
     private String nome;
 
     @NotNull(message = "Umidade Minima não pdoe ser nula.")
     @Min(value = 0, message = "Umidade Mínima deve estar entre 0% e 100%.")
     @Max(value = 100, message = "Umidade Mínima deve estar entre 0% e 100%.")
+    @Column(name = "UMIDADE_MINIMA")
     private Float umidadeMinima;
 
     @NotNull(message = "Umidade Máxima não pdoe ser nula.")
     @Min(value = 0, message = "Umidade Mínima deve estar entre 0% e 100%.")
     @Max(value = 100, message = "Umidade Mínima deve estar entre 0% e 100%.")
+    @Column(name = "UMIDADE_MAXIMA")
     private Float umidadeMaxima;
 
     @Pattern(regexp = ".*\\.jpg|.*\\.jpeg|.*\\.gif|.*\\.png", message = "Arquivo deve estar nas extensões jpg, jpeg, gif ou png")
+    @Column(name = "URL_IMAGEM")
     private String imgUrl;
 
     @OneToMany(mappedBy = "especiePlanta")
