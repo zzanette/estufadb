@@ -19,10 +19,10 @@ public class FlywayConfig {
     @Autowired
     private DataSource dataSource;
 
-    @Value("${flyway.table}")
+    @Value("${spring.flyway.table}")
     private String flywayTable;
 
-    @Value("${flyway.baselineVersionAsString}")
+    @Value("${spring.flyway.baseline-version}")
     private String baseLine;
 
     @Bean
